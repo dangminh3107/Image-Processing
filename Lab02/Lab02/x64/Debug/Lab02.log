@@ -1,0 +1,7 @@
+﻿  Lab02.cpp
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Lab02.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab02\x64\Debug\Lab02.exe
+  Lab02.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab02\x64\Debug\Lab02.pdb (Full PDB)

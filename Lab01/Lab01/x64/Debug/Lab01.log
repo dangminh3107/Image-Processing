@@ -1,0 +1,7 @@
+﻿  Converter.cpp
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab01\lab01\converter.cpp(26): warning C4244: '=': conversion from 'double' to 'uchar', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab01\lab01\converter.cpp(41): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab01\lab01\converter.cpp(75): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab01\lab01\converter.cpp(171): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Lab01.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab01\x64\Debug\Lab01.exe
+  Lab01.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab01\x64\Debug\Lab01.pdb (Full PDB)
