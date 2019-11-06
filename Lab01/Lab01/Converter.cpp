@@ -88,11 +88,11 @@ int Converter::RGB2HSV(const Mat& sourceImage, Mat& destinationImage) {
 			uchar green = pRow[1]; //truy xuất pixel (x,y) channel thứ 1, sau đó gán giá trị cho biến green
 			uchar red = pRow[2]; //truy xuất pixel (x,y) channel thứ 2, sau đó gán giá trị cho biến red
 
-			double _blue = (double)blue / 255;
-			double _green = (double)green / 255;
-			double _red = (double)red / 255;
+			float _blue = (float)blue / 255;
+			float _green = (float)green / 255;
+			float _red = (float)red / 255;
 
-			double max, min, delta, H, S, V;
+			float max, min, delta, H, S, V;
 			/*max: giá trị lớn nhất của 3 kênh màu red, green, blue
 			min: giá trị nhỏ nhất của 3 kênh màu red, green, blue
 			delta: hiệu số của max và min
@@ -109,50 +109,37 @@ int Converter::RGB2HSV(const Mat& sourceImage, Mat& destinationImage) {
 
 			delta = max - min;
 
-
 			/*---------CÔNG THỨC CHUYỂN ĐỔI----------
 			{0	nếu delta = 0
 			H=	{60 * (((_green - _blue)/ delta) mod 6) nếu max = _red
 			{60 * (((_blue - _red)/ delta) + 2) nếu max = _green
 			{60 * (((_red - _green)/ delta) + 4) nếu max = _blue
-
 			{0			nếu max = 0
 			S=	{delta/max	nếu max != 0
-
 			V = max
 			*/
 
 			V = max;
 
-			if (max == 0) {
-				S = 0;
-			}
-			else {
-				S = delta / max;
-			}
+			S = (max == 0) ? 0 : delta / max;
 
 			if (delta == 0) {
 				H = 0;
 			}
 			else {
-				if (max = _red)
-					H = 60 * (fmod(((_green - _blue) / delta), 6));
-				else if (max = _green)
-					H = 60 * (((_blue - _red) / delta) + 2);
-				else if (max = _blue)
-					H = 60 * (((_red - _green) / delta) + 4);
+				if (max == _red)
+					H = 60 * ((_green - _blue) / delta);
+				else if (max == _green)
+					H = 60 * ((_blue - _red) / delta + 2);
+				else if (max == _blue)
+					H = 60 * ((_red - _green) / delta + 4);
 			}
-			if (H < 0)
-				H += 360;
 
-			uchar _H = uchar(H / 2);
-			uchar _S = uchar(S * 255);
-			uchar _V = uchar(V * 255);
+			H = (H < 0) ? H + 360 : H;
 
-			//gán lần lượt các giá trị H, S, V channel thứ 0, 1, 2 của ảnh đích
-			pRowDes[0] = _H;
-			pRowDes[1] = _S;
-			pRowDes[2] = _V;
+			pRowDes[0] = uchar(H / 2);
+			pRowDes[1] = uchar(S * 255);
+			pRowDes[2] = uchar(V * 255);
 		}
 	}
 	return 1;
@@ -169,45 +156,49 @@ int Converter::HSV2RGB(const Mat& sourceImage, Mat& destinationImage) {
 	int height = sourceImage.rows; //số dòng của ảnh gốc --> chiều dài
 	int nChannels = sourceImage.channels(); //số kênh màu
 	int widthStep = sourceImage.step[0]; //khoảng cách tính theo byte giữa 2 pixel cùng cột trên 2 dòng kế tiếp
-	uchar* pData = (uchar*)sourceImage.data; //pData là con trỏ quản lý vùng nhớ ảnh
+	uchar* pData = (uchar*)sourceImage.data; //pData là con trỏ quản lý vùng nhớ ảnh gốc
 
-											 //tạo ảnh đích có kích thước như ảnh gốc, một điểm ảnh sẽ có 3 channel, mỗi channel dùng 8 bit không dấu để biểu diễn
+											 //Khởi tạo ảnh đích với kích thước như ảnh nguồn
 	destinationImage = Mat(height, width, CV_8UC3, Scalar(0));
 
-	uchar* pDataDes = (uchar*)destinationImage.data;  //pData là con trỏ quản lý vùng nhớ ảnh
+	uchar* pDataDes = (uchar*)destinationImage.data;  //pData là con trỏ quản lý vùng nhớ ảnh đích
+
+	float C, X, M, _H, H, S, V, red, green, blue;
+
+	const float FLOAT_TO_BYTE = 255.0f;
+	const float BYTE_TO_FLOAT = 1.0f / FLOAT_TO_BYTE;
 
 	for (int y = 0; y < height; y++, pData += widthStep, pDataDes += widthStep) {
-		uchar* pRow = pData; //lấy con trỏ đầu mỗi dòng của ảnh gốc
-		uchar* pRowDes = pDataDes; //lấy con trỏ đầu mỗi dòng của ảnh đích
+		uchar * pRow = pData; //lấy con trỏ đầu mỗi dòng của ảnh gốc
+		uchar * pRowDes = pDataDes; //lấy con trỏ đầu mỗi dòng của ảnh đích
 		for (int x = 0; x < width; x++, pRow += nChannels, pRowDes += nChannels) {
 
-			//CÔNG THỨC CHUYỂN ĐỔI
-			/*
-			0 <= H, S, V <= 1
-			C = S * V
-			X = C(1 - |(H/60)%2-1|)
-			m = V - C
-			{ (C, X, 0) nếu 0 <= H < 1
-			{ (X, C, 0) nếu 1 <= H < 2
-			{ (0, C, X) nếu 2 <= H < 3
-			(R', G', B') =	{ (0, X, C) nếu 3 <= H < 4
-			{ (X, 0, C) nếu 4 <= H < 5
-			{ (C, 0, X) nếu 5 <= H < 6
+			H = pRow[0] * 2.0;
+			S = pRow[1] * BYTE_TO_FLOAT;
+			V = pRow[2] * BYTE_TO_FLOAT;
 
-			--> (R, G, B) = ((R'+m)×255, (G'+m)×255, (B'+m)×255)
+			/*
+			CÔNG THỨC CHUYỂN ĐỔI
+			C = V * S
+			_H = (H/ 60) % 6
+			X = C * (1 - |(_H % 2) - 1|)
+			M = V -C
+
+			{ (C,X,0) nếu 0 <= _H < 1
+			{ (X,C,0) nếu _H < 2
+			(red, green, blue) = { (0,C,X) nếu _H < 3
+			{ (0,X,C) nếu _H < 4
+			{ (X,0,C) nếu _H < 5
+			{ (C,0,X) nếu _H < 6
+			{ (0,0,0) còn lại
+
+			(red, green blue) = (red * 255, green * 255, blue * 255)
 			*/
 
-			//chuyển đổi từ không gian HSV sang RGB
-			double H = double(pRow[0] * 2);
-			double S = double(pRow[1]);
-			double V = double(pRow[2]);
-
-			double C = S * V;
-			double _H = fmod(H / 60, 6);
-			double X = C * (1 - fabs(fmod(_H, 2) - 1));
-			double M = V - C;
-
-			double red, green, blue;
+			C = S * V;
+			_H = fmod(H / 60.0, 6);
+			X = C * (1 - fabs(fmod(_H, 2) - 1));
+			M = V - C;
 
 			if (0 <= _H && _H < 1) {
 				red = C; green = X; blue = 0;
@@ -230,13 +221,14 @@ int Converter::HSV2RGB(const Mat& sourceImage, Mat& destinationImage) {
 			else {
 				red = 0; green = 0; blue = 0;
 			}
+
 			red += M;
 			green += M;
 			blue += M;
 
-			pRowDes[0] = saturate_cast<uchar>(blue);
-			pRowDes[1] = saturate_cast<uchar>(green);
-			pRowDes[2] = saturate_cast<uchar>(red);
+			pRowDes[0] = uchar(blue * FLOAT_TO_BYTE);
+			pRowDes[1] = uchar(green * FLOAT_TO_BYTE);
+			pRowDes[2] = uchar(red * FLOAT_TO_BYTE);
 		}
 	}
 	return 1;
