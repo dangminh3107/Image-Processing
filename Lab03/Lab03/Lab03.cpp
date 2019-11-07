@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
 	Blur blur;
 	Mat srcImage, desImage;
-	srcImage = imread(argv[2], CV_8UC1);
+	srcImage = imread(argv[2], IMREAD_GRAYSCALE);
 	string cmd = string(argv[1]);
 	int result = 0;
 	if (cmd == "--mean") {
@@ -18,6 +18,18 @@ int main(int argc, char* argv[])
 		kHeight = atoi(argv[4]);
 		kWidth = atoi(argv[3]);
 		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 0);
+	}
+	if (cmd == "--median") {
+		int kHeight, kWidth;
+		kHeight = atoi(argv[4]);
+		kWidth = atoi(argv[3]);
+		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 1);
+	}
+	if (cmd == "--gauss") {
+		int kHeight, kWidth;
+		kHeight = atoi(argv[4]);
+		kWidth = atoi(argv[3]);
+		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 2);
 	}
 	if (result)
 	{

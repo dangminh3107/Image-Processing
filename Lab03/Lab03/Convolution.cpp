@@ -47,7 +47,7 @@ int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
 			sum = 0.0;
 			//Tích chập
 			for (int k = 0; k < offset.size(); k++)
-				sum += *(psRow + offset[k]) * this->_kernel[offset.size() - 1 - k];
+				sum += psRow[offset[k]] * this->_kernel[offset.size() - 1 - k];
 			pdRow[0] = saturate_cast<uchar>(sum);
 		}
 	}
