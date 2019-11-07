@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
 	Blur blur;
 	Mat srcImage, desImage;
-	srcImage = imread(argv[2], IMREAD_GRAYSCALE);
+	srcImage = imread(argv[2], CV_8UC1);
 	string cmd = string(argv[1]);
 	int result = 0;
 	if (cmd == "--mean") {

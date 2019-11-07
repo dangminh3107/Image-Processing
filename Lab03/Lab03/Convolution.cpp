@@ -2,13 +2,13 @@
 #include "Convolution.h"
 
 vector<float> Convolution::GetKernel() {
-	return _kernel;
+	return this->_kernel;
 }
 
 void Convolution::SetKernel(vector<float> kernel, int kWidth, int kHeight) {
-	_kernel = kernel;
-	_kernelHeight = kHeight;
-	_kernelWidth = kWidth;
+	this->_kernel = kernel;
+	this->_kernelHeight = kHeight;
+	this->_kernelWidth = kWidth;
 }
 
 int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
@@ -24,15 +24,15 @@ int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
 	int widthStep = sourceImage.step[0];
 
 	//Tạo ảnh đích với kích thước ảnh nguồn và type là ảnh grayscale
-	destinationImage.create(height, width, sourceImage.type());
+	destinationImage.create(height, width, CV_8UC1);
 
 	//con trỏ quản lý vùng nhớ ảnh
 	uchar* pDes = (uchar*)destinationImage.data;
 	uchar* pSrc = (uchar*)sourceImage.data;
 	
 	//_kernelWidth, _kernelHeight là kích thước vùng lân cận
-	int kHalfWidth = _kernelWidth >> 1;
-	int kHalfHeight = _kernelHeight >> 1;
+	int kHalfWidth = this->_kernelWidth >> 1;
+	int kHalfHeight = this->_kernelHeight >> 1;
 	vector<int> offset;
 	//Tạo bảng offset
 	for (int y = -kHalfHeight; y <= kHalfHeight; y++)
@@ -47,7 +47,7 @@ int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
 			sum = 0.0;
 			//Tích chập
 			for (int k = 0; k < offset.size(); k++)
-				sum += *(psRow + offset[k]) * _kernel[offset.size() - 1 - k];
+				sum += *(psRow + offset[k]) * this->_kernel[offset.size() - 1 - k];
 			pdRow[0] = saturate_cast<uchar>(sum);
 		}
 	}
