@@ -24,7 +24,7 @@ int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
 	int widthStep = sourceImage.step[0];
 
 	//Tạo ảnh đích với kích thước ảnh nguồn và type là ảnh grayscale
-	destinationImage.create(height, width, CV_8UC1);
+	destinationImage.create(height, width, sourceImage.type());
 
 	//con trỏ quản lý vùng nhớ ảnh
 	uchar* pDes = (uchar*)destinationImage.data;
@@ -44,7 +44,7 @@ int Convolution::DoConvolution(const Mat& sourceImage, Mat& destinationImage) {
 		uchar* psRow = pSrc;
 		uchar* pdRow = pDes;
 		for (int j = 0; j < width; j++, psRow += nChannels, pdRow += nChannels) {
-			sum = 0.0;
+			sum = 0;
 			//Tích chập
 			for (int k = 0; k < offset.size(); k++)
 				sum += psRow[offset[k]] * this->_kernel[offset.size() - 1 - k];

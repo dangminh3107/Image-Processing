@@ -1,3 +1,9 @@
-﻿  Lab03.cpp
-  Lab03.vcxproj -> C:\Users\dangm\OneDrive\Documents\Visual Studio 2015\Projects\Lab03\x64\Debug\Lab03.exe
-  Lab03.vcxproj -> C:\Users\dangm\OneDrive\Documents\Visual Studio 2015\Projects\Lab03\x64\Debug\Lab03.pdb (Full PDB)
+﻿  EdgeDetector.cpp
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(59): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(60): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(99): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(116): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab03\lab03\edgedetector.cpp(117): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Lab03.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab03\x64\Debug\Lab03.exe
+  Lab03.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab03\x64\Debug\Lab03.pdb (Full PDB)

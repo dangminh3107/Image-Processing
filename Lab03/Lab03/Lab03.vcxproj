@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Blur.cpp" />
     <ClCompile Include="Convolution.cpp" />
+    <ClCompile Include="EdgeDetector.cpp" />
     <ClCompile Include="Lab03.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

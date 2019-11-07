@@ -9,6 +9,7 @@
 int main(int argc, char* argv[])
 {
 	Blur blur;
+	EdgeDetector Edge;
 	Mat srcImage, desImage;
 	srcImage = imread(argv[2], IMREAD_GRAYSCALE);
 	string cmd = string(argv[1]);
@@ -31,6 +32,18 @@ int main(int argc, char* argv[])
 		kWidth = atoi(argv[3]);
 		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 2);
 	}
+	if (cmd == "--sobel") {
+		int kHeight, kWidth;
+		kHeight = atoi(argv[4]);
+		kWidth = atoi(argv[3]);
+		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 1);
+	}
+	if (cmd == "--prewitt") {
+		int kHeight, kWidth;
+		kHeight = atoi(argv[4]);
+		kWidth = atoi(argv[3]);
+		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 1);
+	}
 	if (result)
 	{
 		imshow("Source Image", srcImage);
@@ -45,16 +58,35 @@ int main(int argc, char* argv[])
 //int main(int argc, char* argv[])
 //{
 //	Blur blur;
+//	EdgeDetector Edge;
 //	Mat srcImage, desImage;
 //
 //	srcImage = imread("Lena.png", IMREAD_GRAYSCALE);
-//	string cmd = "--mean";
+//	string cmd = "--sobel";
 //	int result = 0;
 //	if (cmd == "--mean") {
 //		int kHeight, kWidth;
 //		kHeight = 3;
 //		kWidth = 3;
 //		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 0);
+//	}
+//	if (cmd == "--median") {
+//		int kHeight, kWidth;
+//		kHeight = 3;
+//		kWidth = 3;
+//		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 1);
+//	}
+//	if (cmd == "--gauss") {
+//		int kHeight, kWidth;
+//		kHeight = 3;
+//		kWidth = 3;
+//		result = blur.BlurImage(srcImage, desImage, kWidth, kHeight, 2);
+//	}
+//	if (cmd == "--sobel") {
+//		int kHeight, kWidth;
+//		kHeight = 3;
+//		kWidth = 3;
+//		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 1);
 //	}
 //	if (result)
 //	{

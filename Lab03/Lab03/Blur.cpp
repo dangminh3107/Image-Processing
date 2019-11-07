@@ -32,7 +32,7 @@ int Blur::BlurImage(const Mat& sourceImage, Mat& destinationImage, int kWidth, i
 		//Lọc trung bình
 		int n = kWidth*kHeight;
 		for (int i = 0; i < n; i++)
-			kernel.push_back(1.0 / n);
+			kernel.push_back(1 / n);
 		Convo.SetKernel(kernel, kWidth, kHeight);
 		return Convo.DoConvolution(sourceImage, destinationImage);
 	}
@@ -42,7 +42,9 @@ int Blur::BlurImage(const Mat& sourceImage, Mat& destinationImage, int kWidth, i
 		int height = sourceImage.cols;
 		int width = sourceImage.rows;
 		destinationImage.create(height, width, sourceImage.type());
+		//Số kênh màu
 		int nChannels = sourceImage.channels();
+		//widthStep là khoảng cách tính byte giữa 2 pixel cùng cột trên 2 dòng liên tiếp
 		int widthStep = sourceImage.step[0];
 
 		//Con trỏ  lưu dữ liệu vùng nhớ ảnh
