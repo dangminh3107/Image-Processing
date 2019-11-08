@@ -347,6 +347,9 @@ int GeometricTransformer::Flip(const Mat &srcImage, Mat &dstImage,
 	bool direction, PixelInterpolate* interpolator) {
 	int width = srcImage.cols;
 	int height = srcImage.rows;
+	if (srcImage.empty())
+		return 1;
+	
 	dstImage = Mat(height, width, CV_8UC3, Scalar(0));
 
 	//AffineTransform *trans = new AffineTransform;
