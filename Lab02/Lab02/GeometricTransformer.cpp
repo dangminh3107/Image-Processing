@@ -344,39 +344,75 @@ int GeometricTransformer::Scale(
 //}
 
 int GeometricTransformer::Flip(const Mat &srcImage, Mat &dstImage,
-							   bool direction, PixelInterpolate* interpolator) {
+	bool direction, PixelInterpolate* interpolator) {
 	int width = srcImage.cols;
 	int height = srcImage.rows;
 	dstImage = Mat(height, width, CV_8UC3, Scalar(0));
 
 	//AffineTransform *trans = new AffineTransform;
-	
+
 	//lật ảnh theo chiều ngang, trục đối xứng là cols / 2
 	if (direction == 1) {
-		int colsHalf = width / 2;
-		for (int x = 0; x < colsHalf; x++)
-			for (int y = 0; y < height; y++)
-				dstImage.at<uchar>(y, width - 1 - x) = srcImage.at<uchar>(y, x);
-
-		for (int x = colsHalf; x < width; x++)
-			for (int y = 0; y < height; y++)
-				dstImage.at<uchar>(y, width - 1 - x) = srcImage.at<uchar>(y, x);
+		for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++) {
+				Vec3b color2 = dstImage.at<Vec3b>(Point(x, y));
+				Vec3b color1 = srcImage.at<Vec3b>(Point((width - 1 - x), (height - 1 - y)));
+				color2.val[0] = color1.val[0];
+				color2.val[1] = color1.val[1];
+				color2.val[2] = color1.val[2];
+				dstImage.at<Vec3b>(Point(x, y)) = color1;
+			}
 	}
 
 	//lật ảnh theo chiều dọc, trụ đối xứng là rows / 2
 	if (direction == 0) {
-		int rowsHalf = height / 2;
-		for (int y = 0; y < rowsHalf; y++)
-			for (int x = 0; x < width; x++)
-				dstImage.at<uchar>(height - 1 - y, x) = srcImage.at<uchar>(y, x);
-
-		for (int y = rowsHalf; y < height; y++)
-			for (int x = 0; x < width; x++)
-				dstImage.at<uchar>(height - 1 - y, x) = srcImage.at<uchar>(y, x);
+		for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++) {
+				Vec3b color2 = dstImage.at<Vec3b>(Point(x, y));
+				Vec3b color1 = srcImage.at<Vec3b>(Point((width - 1 - x), y));
+				color2.val[0] = color1.val[0];
+				color2.val[1] = color1.val[1];
+				color2.val[2] = color1.val[2];
+				dstImage.at<Vec3b>(Point(x, y)) = color1;
+			}
 	}
-	
 	return 0;
 }
+
+//int GeometricTransformer::Flip(const Mat &srcImage, Mat &dstImage,
+//							   bool direction, PixelInterpolate* interpolator) {
+//	int width = srcImage.cols;
+//	int height = srcImage.rows;
+//	dstImage = Mat(height, width, CV_8UC3, Scalar(0));
+//
+//	//AffineTransform *trans = new AffineTransform;
+//	
+//	//lật ảnh theo chiều ngang, trục đối xứng là cols / 2
+//	if (direction == 1) {
+//		int colsHalf = width / 2;
+//		for (int x = 0; x < colsHalf; x++)
+//			for (int y = 0; y < height; y++)
+//				dstImage.at<uchar>(y, width - 1 - x) = srcImage.at<uchar>(y, x);
+//
+//		for (int x = colsHalf; x < width; x++)
+//			for (int y = 0; y < height; y++)
+//				dstImage.at<uchar>(y, width - 1 - x) = srcImage.at<uchar>(y, x);
+//	}
+//
+//	//lật ảnh theo chiều dọc, trụ đối xứng là rows / 2
+//	if (direction == 0) {
+//		int rowsHalf = height / 2;
+//		for (int y = 0; y < rowsHalf; y++)
+//			for (int x = 0; x < width; x++)
+//				dstImage.at<uchar>(height - 1 - y, x) = srcImage.at<uchar>(y, x);
+//
+//		for (int y = rowsHalf; y < height; y++)
+//			for (int x = 0; x < width; x++)
+//				dstImage.at<uchar>(height - 1 - y, x) = srcImage.at<uchar>(y, x);
+//	}
+//	
+//	return 0;
+//}
 
 GeometricTransformer::GeometricTransformer(){}
 

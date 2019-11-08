@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 		gt.RotateUnkeepImage(srcImage, desImage, atof(argv[4]), interpolator);
 	}
 	else if (cmd == "--flip") {
-		gt.RotateUnkeepImage(srcImage, desImage, atof(argv[4]), interpolator);
+		gt.Flip(srcImage, desImage, atof(argv[4]), interpolator);
 	}
 
 	// Xóa biến interpolator
