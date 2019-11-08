@@ -7,10 +7,10 @@
 void Sort(uchar* I)
 {
 	int n = sizeof(I);
-	for (int i=0;i<n-1;i++)
+	for (int i = 0; i < n - 1; i++)
 		for (int j = i + 1; j < n; j++)
 		{
-			int temp;
+			uchar temp;
 			if (I[i] > I[j])
 			{
 				temp = I[i];
@@ -32,15 +32,15 @@ int Blur::BlurImage(const Mat& sourceImage, Mat& destinationImage, int kWidth, i
 		//Lọc trung bình
 		int n = kWidth*kHeight;
 		for (int i = 0; i < n; i++)
-			kernel.push_back(1 / n);
+			kernel.push_back(1.0 / n);
 		Convo.SetKernel(kernel, kWidth, kHeight);
 		return Convo.DoConvolution(sourceImage, destinationImage);
 	}
 		break;
 	case 1: {
 		//Lọc trung vị
-		int height = sourceImage.cols;
-		int width = sourceImage.rows;
+		int height = sourceImage.rows;
+		int width = sourceImage.cols;
 		destinationImage.create(height, width, sourceImage.type());
 		//Số kênh màu
 		int nChannels = sourceImage.channels();

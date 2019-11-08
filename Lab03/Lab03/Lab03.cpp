@@ -42,7 +42,13 @@ int main(int argc, char* argv[])
 		int kHeight, kWidth;
 		kHeight = atoi(argv[4]);
 		kWidth = atoi(argv[3]);
-		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 1);
+		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 2);
+	}
+	if (cmd == "--laplace") {
+		int kHeight, kWidth;
+		kHeight = atoi(argv[4]);
+		kWidth = atoi(argv[3]);
+		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 3);
 	}
 	if (result)
 	{
@@ -55,14 +61,14 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-//int main(int argc, char* argv[])
+//int main()
 //{
 //	Blur blur;
 //	EdgeDetector Edge;
 //	Mat srcImage, desImage;
 //
 //	srcImage = imread("Lena.png", IMREAD_GRAYSCALE);
-//	string cmd = "--sobel";
+//	string cmd = "--median";
 //	int result = 0;
 //	if (cmd == "--mean") {
 //		int kHeight, kWidth;
@@ -87,6 +93,18 @@ int main(int argc, char* argv[])
 //		kHeight = 3;
 //		kWidth = 3;
 //		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 1);
+//	}
+//	if (cmd == "--prewitt") {
+//		int kHeight, kWidth;
+//		kHeight = 3;
+//		kWidth = 3;
+//		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 2);
+//	}
+//	if (cmd == "--laplace") {
+//		int kHeight, kWidth;
+//		kHeight = 3;
+//		kWidth = 3;
+//		result = Edge.DetectEdge(srcImage, desImage, kWidth, kHeight, 3);
 //	}
 //	if (result)
 //	{

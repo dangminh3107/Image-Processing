@@ -8,6 +8,7 @@ int EdgeDetector::DetectEdge(const Mat& sourceImage, Mat& destinationImage, int 
 	switch (method)
 	{
 	case 1: {
+		//Lọc Sobel
 		Convolution Convo;
 		vector<float> Kernelx, Kernely;
 
@@ -16,12 +17,14 @@ int EdgeDetector::DetectEdge(const Mat& sourceImage, Mat& destinationImage, int 
 		//Tạo ma trận đích có loại và kích thước giống ma trận nguồn
 		destinationImage.create(height, width, sourceImage.type());
 
-		float Wx[9] = { 1, 0, -1,
-						2, 0, -2,
-						1, 0, -1 };
-		float Wy[9] = { -1, -2, -1,
-						0, 0, 0,
-						1, 2, 1 };
+		float Wx[9] = { 1, 0, -1, 2, 0, -2, 1, 0, -1 };
+		//		[1  0 -1]
+		//	Wx =[2  0 -2] 
+		//		[1  0 -1]
+		float Wy[9] = { -1, -2, -1, 0, 0, 0, 1, 2, 1 };
+		//		[-1  -2  -1]
+		//	Wx =[ 0   0   0] 
+		//		[ 1   2   1]
 		//tạo 2 bộ lọc kernel
 		for (int i = 0; i < 9; i++) {
 			Wx[i] = Wx[i] / 4;
@@ -65,6 +68,7 @@ int EdgeDetector::DetectEdge(const Mat& sourceImage, Mat& destinationImage, int 
 	}
 		break;
 	case 2: {
+		//Lọc Prewitt
 		Convolution Convo;
 		vector<float> Kernelx, Kernely;
 
@@ -73,12 +77,14 @@ int EdgeDetector::DetectEdge(const Mat& sourceImage, Mat& destinationImage, int 
 		//Tạo ma trận đích có loại và kích thước giống ma trận nguồn
 		destinationImage.create(height, width, sourceImage.type());
 
-		float Wx[9] = { 1, 0, -1,
-						1, 0, -1,
-						1, 0, -1 };
-		float Wy[9] = { -1, -1, -1,
-						0, 0, 0,
-						1, 1, 1 };
+		float Wx[9] = { 1, 0, -1, 1, 0, -1, 1, 0, -1 };
+		//		[1  0 -1]
+		//	Wx =[1  0 -1] 
+		//		[1  0 -1]
+		float Wy[9] = { -1, -1, -1, 0, 0, 0, 1, 1, 1 };
+		//		[-1 -1 -1]
+		//	Wy =[ 0  0  0]
+		//		[ 1  1  1]
 		//tạo 2 bộ lọc kernel
 		for (int i = 0; i < 9; i++) {
 			Wx[i] = Wx[i] / 3;
@@ -119,6 +125,23 @@ int EdgeDetector::DetectEdge(const Mat& sourceImage, Mat& destinationImage, int 
 				pdRow[0] = saturate_cast<uchar>(sum);
 			}
 		}
+	}
+		break;
+	case 3: {
+		//Lọc Laplace
+		float Laplace[9] = { 1, 1, 1, 1, -8, 1, 1, 1, 1 };
+		//			  [1  1  1]
+		//	Laplace = [1 -8  1]
+		//			  [1  1  1]
+		//Tạo Kernel
+		vector<float> Kernel;
+		for (int i = 0; i < 9; i++)
+			Kernel.push_back(Laplace[i]);
+
+		//Tính tích chập của ảnh với ma trận Kernel
+		Convolution Convo;
+		Convo.SetKernel(Kernel, 3, 3);
+		Convo.DoConvolution(sourceImage, destinationImage);
 	}
 		break;
 	default:
