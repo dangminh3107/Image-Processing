@@ -1,7 +1,27 @@
-﻿  Lab02.cpp
-c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\lab02.cpp(49): warning C4800: 'double': forcing value to bool 'true' or 'false' (performance warning)
-  Lab02.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab02\x64\Debug\Lab02.exe
-  Lab02.vcxproj -> C:\Users\dangm\OneDrive\documents\visual studio 2015\Projects\Lab02\x64\Debug\Lab02.pdb (Full PDB)
+﻿  GeometricTransformer.cpp
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(7): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(26): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(48): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(49): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(50): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(71): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(71): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(155): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(156): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(162): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(186): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(187): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(206): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(207): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(222): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(223): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(259): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(274): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(275): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\dangm\onedrive\documents\visual studio 2015\projects\lab02\lab02\geometrictransformer.cpp(306): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Lab02.vcxproj -> C:\Users\dangm\OneDrive\Documents\Visual Studio 2015\Projects\Lab02\x64\Debug\Lab02.exe
+  Lab02.vcxproj -> C:\Users\dangm\OneDrive\Documents\Visual Studio 2015\Projects\Lab02\x64\Debug\Lab02.pdb (Full PDB)

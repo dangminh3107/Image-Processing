@@ -359,7 +359,7 @@ int GeometricTransformer::Flip(const Mat &srcImage, Mat &dstImage,
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++) {
 				Vec3b color2 = dstImage.at<Vec3b>(Point(x, y));
-				Vec3b color1 = srcImage.at<Vec3b>(Point((width - 1 - x), (height - 1 - y)));
+				Vec3b color1 = srcImage.at<Vec3b>(Point(x, (height - 1 - y)));
 				color2.val[0] = color1.val[0];
 				color2.val[1] = color1.val[1];
 				color2.val[2] = color1.val[2];
